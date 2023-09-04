@@ -69,3 +69,20 @@ parteEntera:: Float -> Integer
 parteEntera x | 0 <= x && x < 1 = 0
               | otherwise = 1 + parteEntera (x-1)  
 
+prodInt :: (Float , Float) -> (Float , Float) -> Float
+prodInt t1 t2 = (fst t1 * fst t2) + (snd t1 * snd t2)
+
+distanciaPuntos :: (Float , Float) -> (Float , Float) -> Float
+distanciaPuntos t1 t2 = sqrt ((fst t1 - fst t2) * (fst t1 - fst t2) + (snd t1 - snd t2) * (snd t1 - snd t2))
+ 
+sumaTerna :: (Float , Float , Float) -> Float
+sumaTerna (x,y,z) = x + y + z
+
+sumarSoloMultiplos :: (Integer , Integer , Integer) -> Integer -> Integer
+sumarSoloMultiplos (x,y,z) n | mod x n == 0 && mod y n == 0 && mod z n == 0 = x + y + z
+                             | mod x n == 0 && mod y n == 0 = x + y
+                             | mod x n == 0 && mod z n == 0 = x + z
+                             | mod y n == 0 && mod z n == 0 = y + z
+                             | mod x n == 0 = x
+                             | mod y n == 0 = y
+                             | mod z n == 0 = z
