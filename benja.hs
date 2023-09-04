@@ -31,3 +31,41 @@ posPrimerPar (x,y,z) | mod x 2 == 0 = 1
 ambosSon0x::Integer->Integer->Bool
 ambosSon0x 0 0 = True
 ambosSon0x a b = False
+
+mismoIntervalo::Integer->Integer->Bool
+mismoIntervalo a b | a<=3 && b<=3 = True
+                   | a>3 && a<=7 && b>3 && b<=7 = True
+                   | a>7 && b>7 = True
+                   | otherwise = False
+
+sumaDistintos::Integer->Integer->Integer->Integer
+sumaDistintos a b c | a == b = a + c
+                    | b == c = a + b
+                    | otherwise = a + b + c
+
+esMultiploDe::Integer->Integer->Bool
+esMultiploDe a b | mod a b == 0 = True
+                 | otherwise = False
+
+digitoUnidades::Integer->Integer
+digitoUnidades a | a < 10 = a
+                 | otherwise = mod a 10
+
+digitoDecenas::Integer->Integer
+digitoDecenas a | a<10 = 0
+                | a >= 10 = div (mod a 100) 10
+
+ultimoDigito :: Integer -> Integer
+ultimoDigito n = mod n 10
+
+sacarUltimo :: Integer -> Integer
+sacarUltimo n = div n 10
+
+tDI::Integer->Bool
+tDI n | n < 10 = True
+      | mod n 10 == n = True
+  
+parteEntera:: Float -> Integer
+parteEntera x | 0 <= x && x < 1 = 0
+              | otherwise = 1 + parteEntera (x-1)  
+
