@@ -86,3 +86,9 @@ sumarSoloMultiplos (x,y,z) n | mod x n == 0 && mod y n == 0 && mod z n == 0 = x 
                              | mod x n == 0 = x
                              | mod y n == 0 = y
                              | mod z n == 0 = z
+
+crearPar :: a -> b -> (a,b)
+crearPar a b = (a,b)
+
+invertir :: (a , b) -> (b , a)
+invertir (a , b) = (b , a)
