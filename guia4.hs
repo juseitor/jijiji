@@ -21,7 +21,7 @@ esDivisible x y | x == y = True
 
 sumaImpares :: Integer -> Integer
 sumaImpares x | x == 1 = 1
-              | otherwise = sumaImpares (2*x-1)
+              | otherwise = 2*x - 1 + sumaImpares (x-1)
 
 --5)
 
@@ -87,12 +87,38 @@ f1 n | n == 0 = 1
 
 --f2
 
-f2 :: Integer -> Float -> Float
-f2 n q | n == 1 = q 
-       | otherwise = q^n + f2 (n-1) q
+f2 :: (Integer , Float) -> Float
+f2 (n , q) | n == 1 = q
+       | otherwise = q^n + f2 ((n-1) , q)
 
 --f3
 
-f3 :: Integer -> Float -> Float
-f3 n q | n == 0 = 1
-       | otherwise = q^(2*n) + f3 (2*n-1) q
+auxF2 :: (Integer , Float) -> Float
+auxF2 (n , q) | n == 0 = 1
+              | otherwise = q^n + auxF2 ((n-1) , q)
+
+f3 :: (Integer , Float) -> Float
+f3 (n , q) | n == 0 = 1
+       | otherwise = auxF2 ((2*n) , q)
+
+--13)
+
+f :: Integer -> Integer -> Integer
+f i j | i==1 = fAux 1 j 
+      | otherwise = fAux i j + f(i-1) j
+
+fAux :: Integer -> Integer -> Integer
+fAux i j | j == 1 = i 
+         | otherwise = i^j + fAux i (j-1)
+
+--14)
+
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+sumaPotencias q n m | n == 1 && m == 1 = q^2
+                    | otherwise =  q^(sumatoria n + sumatoria m)
+
+sumatoria :: Integer -> Integer
+sumatoria x | x == 1 = 1
+            | otherwise = x + sumatoria (x-1)
+
+--15)
