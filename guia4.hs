@@ -103,13 +103,23 @@ f3 (n , q) | n == 0 = 1
 
 --13)
 
-f :: Integer -> Integer -> Integer
-f i j | i==1 = fAux 1 j 
-      | otherwise = fAux i j + f(i-1) j
+-- -- f :: Integer -> Integer -> Integer
+-- f i j | i==1 = fAux 1 j 
+--       | otherwise = fAux i j + f(i-1) j
 
-fAux :: Integer -> Integer -> Integer
-fAux i j | j == 1 = i 
-         | otherwise = i^j + fAux i (j-1)
+-- fAux :: Integer -> Integer -> Integer
+-- fAux i j | j == 1 = i 
+--          | otherwise = i^j + fAux i (j-1)
+
+-- salio choto pero debería haber salido bien
+
+sumatoriaDoble :: Integer-> Integer-> Integer 
+sumatoriaDoble n m | n == 1 = m
+                   | otherwise = f2' n m + sumatoriaDoble (n-1) m
+
+f2' :: Integer -> Integer -> Integer
+f2' n m | n == 1 = m
+        | otherwise = m^n + f2' (n-1) m
 
 --14)
 
@@ -122,3 +132,17 @@ sumatoria x | x == 1 = 1
             | otherwise = x + sumatoria (x-1)
 
 --15)
+sumaRacionales :: Integer -> Integer -> Float
+sumaRacionales p q | p == 1 = sumaRacionalesAux 1 q
+                   | otherwise = sumaRacionalesAux p q + sumaRacionales p (q-1)
+
+sumaRacionalesAux :: Float -> Float -> Float
+sumaRacionalesAux p q | q == 1 = p
+                      | otherwise = p/q + sumaRacionalesAux (p-1) q
+
+sumatoria' :: Float -> Float
+sumatoria' x | x == 1 = 1
+             | otherwise = x + sumatoria' (x-1)
+
+-- sumaRacionalesAux :: Integer -> Integer -> Integer
+-- -sumaRacionalesAux p q | 
