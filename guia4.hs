@@ -101,6 +101,28 @@ f3 :: (Integer , Float) -> Float
 f3 (n , q) | n == 0 = 1
        | otherwise = auxF2 ((2*n) , q)
 
+--11)
+
+eAprox :: Integer -> Float
+eAprox n | n == 0 = 1
+         | otherwise = eAproxAux (fromInteger n) + eAprox (n-1)
+
+eAproxAux :: Float -> Float
+eAproxAux n = (1/factorial n)
+
+factorial :: Float -> Float
+factorial n | n == 1 = n
+              | otherwise = n * factorial(n-1)
+
+--12)
+
+terminoN :: Float -> Float
+terminoN n | n == 1 = 2
+           | otherwise = 2 + (1 / terminoN (n-1))   
+
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox n = -1 + terminoN(fromIntegral(n))
+
 --13)
 
 -- -- f :: Integer -> Integer -> Integer
@@ -133,16 +155,102 @@ sumatoria x | x == 1 = 1
 
 --15)
 sumaRacionales :: Integer -> Integer -> Float
-sumaRacionales p q | p == 1 = sumaRacionalesAux 1 q
-                   | otherwise = sumaRacionalesAux p q + sumaRacionales p (q-1)
+sumaRacionales p q | p == 1 = sumaRacionalesAux (1.0) (fromInteger q)
+                   | otherwise = sumaRacionalesAux (fromInteger p) (fromInteger q) + sumaRacionales (p-1) q
 
 sumaRacionalesAux :: Float -> Float -> Float
 sumaRacionalesAux p q | q == 1 = p
-                      | otherwise = p/q + sumaRacionalesAux (p-1) q
-
-sumatoria' :: Float -> Float
-sumatoria' x | x == 1 = 1
-             | otherwise = x + sumatoria' (x-1)
+                      | otherwise = p/q + sumaRacionalesAux p (q-1)
 
 -- sumaRacionalesAux :: Integer -> Integer -> Integer
 -- -sumaRacionalesAux p q | 
+
+--16)
+--a)
+
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorDesde n 2
+
+menorDivisorDesde :: Integer -> Integer -> Integer
+menorDivisorDesde n m | mod n m == 0 = m
+                      | otherwise = menorDivisorDesde n (m+1)
+
+--b)
+
+esPrimo :: Integer -> Bool
+esPrimo n | n == 1 = False
+          | menorDivisorDesde n 2 == n = True
+          | otherwise = False     
+
+--c)
+
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos n m | (n == 1 && m == 1) = True
+                | menorDivisorDesde n 2 == menorDivisorDesde m 2 = False
+                | otherwise = True
+
+--d) 
+
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n | n == 1 = 2
+              | otherwise = siguientePrimo (nEsimoPrimo (n-1) + 1)
+
+esPrimo2 :: Integer -> Bool
+esPrimo2 n = cantidadDeDivisoresHasta n n == 2 
+
+cantidadDeDivisoresHasta :: Integer -> Integer -> Integer
+cantidadDeDivisoresHasta n m | m == 1 = 1
+                             | mod n m == 0 = 1 + cantidadDeDivisoresHasta n (m-1)
+                             | otherwise = cantidadDeDivisoresHasta n (m-1)
+
+siguientePrimo :: Integer -> Integer
+siguientePrimo n | esPrimo2 n = n
+                 | otherwise = siguientePrimo (n+1)
+              
+--17)
+
+--fibonacci :: Integer -> Integer
+-- fibonacci n | n == 0 = 0
+--             | n == 1 = 1
+--             | otherwise = fibonacci(n-1) + fibonacci(n-2)
+
+esFibonacci :: Integer -> Bool 
+esFibonacci n = auxEsFib n 0
+
+auxEsFib :: Integer -> Integer -> Bool
+auxEsFib n i | fibonacci (i) > n = False
+             | fibonacci (i) == n = True
+             | otherwise = auxEsFib n (i+1)
+
+--18) Lo copie y solo lo entendì una vez hecho. No lo hubiese podido hacer solo
+
+mayorDigitoPar :: Integer -> Integer
+mayorDigitoPar n | todosDigitosImpares n == True = -1
+                 | otherwise = mayorDigitoParAux n 1 (-1)
+
+mayorDigitoParAux :: Integer -> Integer -> Integer -> Integer
+mayorDigitoParAux n i m | n < 10 && mod n 2 == 1 = -1
+                        | i == cantDigitos n + 1 = m 
+                        | esPar (iesimoDigito n i) == True = mayorDigitoParAux n (i+1) (max (iesimoDigito n i) m)
+                        | otherwise = mayorDigitoParAux n (i+1) m
+
+esPar :: Integer -> Bool
+esPar n | mod n 2 == 0 = True
+        | otherwise = False
+
+todosDigitosImpares :: Integer -> Bool
+todosDigitosImpares n | mod n 2 == 0 = False
+                      | mod n 2 == 1 && n < 10 = True
+                      | mod n 2 == 1 = todosDigitosImpares(sacarUltimo n)
+
+--19)
+
+esSumaInicialDePrimos :: Integer -> Bool
+esSumaInicialDePrimos n | n == 0 = False
+                        | n == esSIDPAux n 2 0 = True
+                        | otherwise = False
+
+esSIDPAux :: Integer -> Integer -> Integer -> Integer
+esSIDPAux n m p | n <= p = p
+                | esPrimo m == True = esSIDPAux n (m+1) (p+m)
+                | otherwise = esSIDPAux n (m+1) p
