@@ -33,7 +33,7 @@ def factorial(n:int) -> int :
 
 def factorial_w(n:int) -> int :
     res: int = 1
-    I: int = 1
+    i: int = 1
     while i>0 :
         res=res*1
         i=i-1
@@ -114,3 +114,14 @@ def es_bisiesto(año:int) :
     res : bool = (año%400 == 0) or (año%4 == 0 and año%100 != 0)
     return res
 
+#4)
+
+#4.1
+
+def peso_pino(altura:float) -> float :
+    if altura - 3 > 0 :
+        return 900 + (altura - 3) * 2 * 100
+    else :
+        return altura * 3 * 100
+
+##def es_peso_util()
