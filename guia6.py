@@ -123,5 +123,91 @@ def peso_pino(altura:float) -> float :
         return 900 + (altura - 3) * 2 * 100
     else :
         return altura * 3 * 100
+    
+#4.2
 
-##def es_peso_util()
+def es_peso_util(peso:float) -> bool :
+    res : bool = 400 <= peso <= 1000
+    return res
+
+#4.3
+
+def sirve_pino(altura:float) -> bool :
+    res : bool = 400 <= peso_pino(altura) <= 1000
+    return res
+
+#5)
+
+#5.1
+
+def devolver_el_doble_si_es_par(n:int) -> int :
+    if n % 2 == 0 :
+        return 2*n
+    else :
+        return n
+    
+#5.2
+
+def devolver_valor_si_es_par_sino_el_que_sigue(n:int) -> int :
+    if n % 2 == 0 :
+        return n
+    else :
+        return n + 1
+    
+#5.3
+
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(n:int) -> int :
+    if n % 3 == 0 :
+        return 2 * n
+    if n % 9 == 0 :
+        return 3 * n
+    else :
+        return n
+    
+#5.4
+
+def lindo_nombre(nombre:str) -> str :
+    if len(nombre) >= 5 :
+        print("Tu nombre tiene muchas letras!")
+    else :
+        print("Tu nombre tiene menos de 5 caracteres. Es horrrible y chico, como tu verga")
+
+#5.6
+
+def que_te_toca(sexo:str,edad:int) -> str :
+    if edad < 18 :
+        return "Anda de vacaciones"
+    if sexo == "F" and edad >= 60 :
+        return "Anda de vacaciones"
+    if sexo == "M" and edad >= 65 :
+        return "Anda de vacaciones"
+    else :
+        return "Te toca laburar pajin"
+
+# print(que_te_toca("F",17))
+# print(que_te_toca("M",7))
+# print(que_te_toca("F",37))
+# print(que_te_toca("M",57))
+# print(que_te_toca("F",60))
+# print(que_te_toca("M",60))
+# print(que_te_toca("M",65)) 
+
+#6)
+
+#6.1
+
+def del_1_al_10() :
+    i = 1
+    while i <= 10 :
+        print (i)
+        i = i + 1
+
+#6.2
+
+def pares_del_10_al_40() :
+    i = 10
+    while i <= 40 :
+        print(i)
+        i = i + 2
+
+#6.3
