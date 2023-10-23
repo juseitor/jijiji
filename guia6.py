@@ -211,3 +211,37 @@ def pares_del_10_al_40() :
         i = i + 2
 
 #6.3
+
+def imprimir_eco() :
+    i = 0
+    while i < 10 :
+        print("eco")
+        i = i + 1
+
+#6.4
+
+def cuenta_regresiva(n:int) :
+    while n > 0 :
+        print (n)
+        n = n - 1
+    print("Despegue!")
+
+#6.5
+
+def viaje_en_el_tiempo(partida:int,salida:int) :
+    partida = partida - 1
+    while partida >= salida :
+        print("Viajo un ano al pasado, estamos en el ano: " + str(partida))
+        partida = partida - 1
+
+#6.6 copiado de clari
+
+def viajando_a_aristoteles(anopartida:int) :
+    anopartida = anopartida - 20
+    while anopartida >= 0 :
+        print("Viajo 20 anos al pasado, estamos en el ano" + str(anopartida))
+        anopartida = anopartida - 20
+    anopartida =(-anopartida)
+    while anopartida <= 384 :
+        print("Viajo 20 anos al pasado, estamos en el ano" + str(anopartida))
+        anopartida = anopartida + 20
