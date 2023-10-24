@@ -236,7 +236,7 @@ def viaje_en_el_tiempo(partida:int,salida:int) :
 
 #6.6 copiado de clari
 
-def viajando_a_aristoteles(anopartida:int) :
+def viaje_a_aristoteles(anopartida:int) :
     anopartida = anopartida - 20
     while anopartida >= 0 :
         print("Viajo 20 anos al pasado, estamos en el ano" + str(anopartida))
@@ -245,3 +245,45 @@ def viajando_a_aristoteles(anopartida:int) :
     while anopartida <= 384 :
         print("Viajo 20 anos al pasado, estamos en el ano" + str(anopartida))
         anopartida = anopartida + 20
+
+#7)
+
+#7.1
+
+def del_1_al_10fir() :
+    for i in range(1,11,1) :
+        print(i)
+
+#7.2
+
+def pares_del_10_al_40fir() :
+    for i in range(10,41,2) :
+        print(i)
+
+#7.3
+
+def imprimir_ecofir() :
+    i = 1
+    for i in range(1,11,1) :
+        print("eco")
+        i = i + 1
+
+#7.4
+
+def cuenta_regresivafir(n:int) :
+    i = n
+    for i in range(n,0,(-1)) :
+        print(i)
+    print("Despegue")
+
+#7.5
+
+# def viaje_en_el_tiempofir(anoentrada:int,anosalida:int) :
+#     for i in range(anosalida,anoentrada,(-1)) :
+#         print("Viajó un año al pasado, estamos en el año " + str(anopartida))
+
+#7.6
+
+def viaje_a_aristotelesfir(añopartida:int) :
+    for i in range (añopartida,(-384),(-20)) :
+        print("Viajó 20 años al pasado, estamos en el año" + str(añopartida))
