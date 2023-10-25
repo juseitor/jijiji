@@ -278,12 +278,13 @@ def cuenta_regresivafir(n:int) :
 
 #7.5
 
-# def viaje_en_el_tiempofir(anoentrada:int,anosalida:int) :
-#     for i in range(anosalida,anoentrada,(-1)) :
-#         print("Viajó un año al pasado, estamos en el año " + str(anopartida))
+def viaje_en_el_tiempofir(anoentrada:int,anosalida:int) :
+    i = anoentrada
+    for i in range(anoentrada-1,anosalida-1,(-1)) :
+        print("Viajó un año al pasado, estamos en el año " + str(i))
 
 #7.6
 
 def viaje_a_aristotelesfir(añopartida:int) :
-    for i in range (añopartida,(-384),(-20)) :
-        print("Viajó 20 años al pasado, estamos en el año" + str(añopartida))
+    for i in range (añopartida-20,(-384),(-20)) :
+        print("Viajó 20 años al pasado, estamos en el año " + str(i))
