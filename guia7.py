@@ -88,5 +88,29 @@ def hayPalabraDe7Letras(s:List[str]) -> bool:
 
 #1.6
 
-# def esPalindromo(s:str) -> bool :
+def esPalindromo1(s:str) -> bool :
+    res : bool = True
+    indice_primero : int = 0
+    indice_ultimo : int = len(s) - 1
+    while indice_ultimo > indice_primero :
+        if s[indice_primero] == s[indice_ultimo] and res :
+            res = True
+            indice_primero += 1
+            indice_ultimo = indice_ultimo - 1
+        else :
+            res = False
+            indice_primero += 1
+            indice_ultimo -= 1
+    return res
+
+# de clari
+
+def esPalindromo2(s:str) -> bool :
+    res : bool = True
+    for i in range(0,(len(s)//2),1) :
+        if (s[i] == s[len(s) - i - 1]) and res :
+            res = True
+        else :
+            res = False
+    return res
 
