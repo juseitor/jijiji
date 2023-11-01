@@ -1,5 +1,6 @@
 from typing import List
 from typing import Tuple
+import random
 
 #1)
 
@@ -200,7 +201,7 @@ def distintasVocales(palabra:str) -> bool :
 def esVocal(letra:str) -> bool :
     res : bool = False
     vocales2 : list = ['a','e','i','o','u','A','E','I','O','U']
-    if perteneceGenerico(vocales2,letra) :
+    if pertenece_clari2(vocales2,letra) :
         res = True
     return res
 
@@ -214,9 +215,14 @@ def pertenece_clari2(s:[],e:any) :
 
 #2.1
 
-def cambiarPosicionesPares(s:list) :
-    for i in range(0,len(s)-1,2) :
+def cambiarPosicionesPares(s:list) -> list:
+    for i in range(1,len(s),2) :
         s[i] = 0
+
+# t:list = [1,1,1,1]
+# print(t)
+# cambiarPosicionesPares(t)
+# print(t)
 
 #2.2
 
@@ -231,4 +237,178 @@ def cambioPosicionesPares(s:list) -> list :
 
 #2.3
 
+def sacarVocales(palabra:str) -> str :
+    palabra_sin_vocales : list = []
+    for letra in palabra :
+        if not esVocal(letra) :
+            palabra_sin_vocales.append(letra)
+    return palabra_sin_vocales
 
+#2.4
+
+def reemplazaVocales(palabra:str) -> str :
+    palabra_sin_vocales : list = []
+    for letra in palabra :
+        if esVocal(letra) :
+            palabra_sin_vocales.append(' ')
+        else : 
+            palabra_sin_vocales.append(letra)
+    return palabra_sin_vocales
+
+#2.5
+
+def daVueltaStr(palabra:str) -> str :
+    palabra_dada_vuelta : str = []
+    for letra in range (len(palabra)-1,(-1),(-1)) :
+        palabra_dada_vuelta.append(palabra[letra])
+    return palabra_dada_vuelta
+
+# si en la linea 262 en vez de lo escrito pongo:
+# palabra_dada_vuelta = palabra_dada_vuelta + palabra[letra]
+# me tira :
+# File "/home/jusa/Downloads/guia7.py", line 262, in daVueltaStr
+#     palabra_dada_vuelta = palabra_dada_vuelta + palabra[letra]
+# TypeError: can only concatenate list (not "str") to list
+
+#2.6
+
+# def eliminarRepetidos(palabra:str) -> str :
+#     palabra_nueva : str = []
+#     for letra in palabra :
+#         if not pertenece_generico(quitarPrimeraAparicion(palabra),letra) :
+#             palabra_nueva.append(letra)
+#         else :
+
+# def quitarPrimeraAparicion(palabra:str,letra:str) -> str :
+#     palabra_sin_primera : str = []
+#     indice_actual = 0
+#     while indice_actual < len(palabra) :
+#         if palabra[indice_actual] != letra :
+#             palabra_sin_primera.append(palabra[indice_actual])
+#             indice_actual += 1
+#         else :
+
+def eliminarRepetidos(palabra:str) -> str :
+    palabra_nueva : str = []
+    indice_actual : int = 0
+    while indice_actual < len(palabra) :
+        if not pertenece_generico(palabra_nueva,palabra[indice_actual]) :
+            palabra_nueva.append(palabra[indice_actual])
+            indice_actual += 1
+        else :
+            indice_actual += 1
+    return palabra_nueva
+
+def eliminarRepetidosGabi(s:str) -> str :
+    res : str = ""
+    for x in range(0,len(s),1) :
+        if not pertenece_generico(res,s[x]) :
+            res = res + s[x]
+    return res
+
+#3) con elem me toma como que si al menos hay algun numero que sea mayor a 4 ya puede ser 1 o 2, en vez de que al haber al menos un numero menor a 4 es si o si 3
+
+def aprobado(s:list) -> int :
+    res : int = 3
+    for elem in s :
+        if promedio(s) >= 7 and not elem <= 4 :
+            res = 1
+        elif promedio(s) < 7 and promedio(s) >= 4 and not elem <= 4 :
+            res = 2
+    return res
+
+def promedio(s:list) -> float :
+    res : int = sumaTotal(s) / len(s)
+    return res
+
+#4)
+
+#4.1 
+
+def nombresEstudiantes()->list:
+    estudiantes:list=[]
+    nombre=input()
+    while not(nombre == "listo"):
+        estudiantes.append(nombre)
+        nombre = input()
+    return estudiantes   
+
+#print(nombresEstudiantes())
+
+#4.2 clari
+
+def cargasDeLaSube():
+    eleccion=input()
+    historial:list=[]
+    while not (eleccion == "X"):
+        monto=input()
+        historial.append((eleccion, monto))
+        eleccion=input()
+    else: return historial   
+
+#4.3 clari
+
+def sieteYmedio():
+    mazo:list=[1,2,3,4,5,6,7,10,11,12]
+    eleccion="y"
+    historial:list[float]=[]
+    puntos:float=0
+    res=[]
+    while eleccion=="y": 
+      carta = random.choice(mazo)
+      historial.append(carta)
+      if pertenece_generico([10,11,12],carta):
+          puntos = puntos + 0.5
+      else: puntos = puntos + carta      
+      if puntos > 7.5: 
+        print("Ha perdido. Este es su historial de cartas:")
+        return historial
+      print("¿Desea plantarse (x) o seguir (y)?:")
+      eleccion=input()    
+    print("Se ha plantado. Este es su historial de cartas:")
+    return historial  
+
+#5)
+
+#5.1
+
+def perteneceACadaUno(s:[[int]],e:int) -> [bool] :
+    res : [bool] = []
+    indice_actual : int = 0
+    while indice_actual < len(s) :
+        if pertenece_generico(s[indice_actual],e) :
+            res.append(True)
+            indice_actual += 1
+        else:
+            res.append(False)
+            indice_actual += 1
+    return res
+
+#5.2
+
+def esMatrizClari(s:List[list])->bool:
+    res:bool = True
+    if len(s)>0 and len(s[0])>0:
+        for i in range(0,len(s),1):
+           if len(s[i]) == len(s[0]) and res:
+               res=True
+           else: res = False 
+    else: res = False
+    return res 
+
+def esMatriz(s:[[int]]) -> bool :
+    res : bool = True
+    if len(s) > 0 and len(s[0]) > 0 :
+        for fila in range(0,len(s),1) :
+            if len(s[0]) == len(s[fila]) and res:
+                res = True
+            else :
+                res = False
+    else :
+        res = False
+    return res
+        
+
+#5.3
+
+#def filasOrdenadas(m:[[int]]) -> bool :
