@@ -306,15 +306,17 @@ def eliminarRepetidosGabi(s:str) -> str :
             res = res + s[x]
     return res
 
-#3) con elem me toma como que si al menos hay algun numero que sea mayor a 4 ya puede ser 1 o 2, en vez de que al haber al menos un numero menor a 4 es si o si 3
+#3)
 
 def aprobado(s:list) -> int :
     res : int = 3
-    for elem in s :
-        if promedio(s) >= 7 and not elem <= 4 :
-            res = 1
-        elif promedio(s) < 7 and promedio(s) >= 4 and not elem <= 4 :
+    for i in range(0,len(s)) :
+        if s[i] < 4 :
+            res = 3
+        elif promedio(s) < 7 and promedio(s) >= 4 :
             res = 2
+        else :
+            res = 1
     return res
 
 def promedio(s:list) -> float :
@@ -407,8 +409,34 @@ def esMatriz(s:[[int]]) -> bool :
     else :
         res = False
     return res
-        
 
 #5.3
 
-#def filasOrdenadas(m:[[int]]) -> bool :
+# def filasOrdenadasClari(m:List[list]) -> List[bool] :
+#   res : List[bool] =[]
+def filasOrdenadas1(m:[[int]]) -> bool :
+    res : [bool] = []
+    for i in range(0,len(m),1) :
+        res.append(ordenados(m[i]))
+    return res
+
+def filasOrdenadas2(m:[[int]]) -> bool :
+    res : [bool] = []
+    indice_actual : int = 0
+    while indice_actual < len(m) :
+        if ordenados(m[indice_actual]) :
+            res.append(ordenados(m[indice_actual]))
+            indice_actual += 1
+        else :
+            res.append(ordenados(m[indice_actual]))
+            indice_actual += 1
+    return res
+
+#UN PERTENECE
+
+def pertenecejijiji(s:[],e:any) :
+    res : bool = False
+    for x in s :
+        if x == e :
+            res = True
+    return res
